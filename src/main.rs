@@ -131,6 +131,34 @@ fn mod_inverse(a: &BigInt, m: &BigInt) -> BigInt {
     xy.0
 }
 
+
+fn mod_pow(base: &BigInt, exponent: &BigInt, modulus: &BigInt) -> BigInt {
+    let mut result = BigInt::one();
+    let mut base = base.clone();
+    let mut exp = exponent.clone();
+    
+    while exp > BigInt::zero() {
+        if &exp % 2 == BigInt::one() {
+            result = (result * &base) % modulus;
+        }
+        base = (&base * &base) % modulus;
+        exp /= 2;
+    }
+    result
+}
+
+
+fn additive_inverse(public_key: &PaillierPublicKey, c: &BigInt) -> BigInt {
+    let n_squared = &public_key.n * &public_key.n;
+    mod_pow(c, &(&public_key.n - BigInt::one()), &n_squared)
+}
+
+
+fn subtract_encrypted(public_key: &PaillierPublicKey, c1: &BigInt, c2: &BigInt) -> BigInt {
+    let inverse_c2 = additive_inverse(public_key, c2);
+    add_encrypted(public_key, c1, &inverse_c2)
+}
+
 fn main() {
     let (public_key, private_key) = generate_keypair(1024);
     
@@ -154,4 +182,16 @@ fn main() {
     
     println!("Decrypted sum: {}", decrypted_sum);
     println!("Actual sum: {}", &m1 + &m2);
+
+    let m3 = BigInt::from(10);
+    let c3 = encrypt(&public_key, &m3);
+
+    // Demonstrate homomorphic subtraction
+    let c_diff = subtract_encrypted(&public_key, &c1, &c3);
+    let decrypted_diff = decrypt(&private_key, &c_diff);
+    
+    println!("m1: {}", m1);
+    println!("m3: {}", m3);
+    println!("Decrypted difference (m1 - m3): {}", decrypted_diff);
+    println!("Actual difference: {}", &m1 - &m3);
 }
