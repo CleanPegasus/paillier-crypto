@@ -1,0 +1,10 @@
+[package]
+name = "paillier-crypto"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+num-bigint = { version = "0.4", features = ["rand"] }
+num-integer = "0.1.46"
+num-traits = "0.2"
+rand = "0.8"
