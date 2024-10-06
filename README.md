@@ -93,6 +93,11 @@ println!("Decrypted difference (m1 - m3): {}", decrypted_diff);
 println!("Actual difference: {}", &m1 - &m3);
 ```
 
+### ToD0
+- [ ] Homomorphic multiplication
+- [ ] Multiplicative inverse
+- [ ] Homomorphic division
+
 ### License
 This project is licensed under the MIT License. See the LICENSE file for details.
 
