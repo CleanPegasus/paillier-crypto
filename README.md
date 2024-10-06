@@ -3,10 +3,10 @@
 This Rust library implements the Paillier cryptosystem, a probabilistic asymmetric algorithm for public key cryptography. The library provides functionality for key generation, encryption, decryption, and homomorphic operations.
 
 ### Features
-**Key Generation**: Generate public and private key pairs.
-**Encryption**: Encrypt messages using the public key.
-**Decryption**: Decrypt ciphertexts using the private key.
-**Homomorphic Operations**: Perform addition and subtraction on encrypted values without decrypting them.
+- **Key Generation**: Generate public and private key pairs.
+- **Encryption**: Encrypt messages using the public key.
+- **Decryption**: Decrypt ciphertexts using the private key.
+- **Homomorphic Operations**: Perform addition and subtraction on encrypted values without decrypting them.
 
 ### Installation
 Add the following to your Cargo.toml:
