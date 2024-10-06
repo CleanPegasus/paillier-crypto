@@ -1,4 +1,5 @@
 mod utils;
+mod lib_test;
 use num_bigint::{BigInt, RandBigInt, ToBigInt};
 use num_traits::{One, Zero};
 
