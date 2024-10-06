@@ -39,8 +39,6 @@ pub fn generate_keypair(bit_length: usize) -> (PaillierPublicKey, PaillierPrivat
         public_key: public_key.clone(),
     };
 
-    dbg!(&private_key);
-
     (public_key, private_key)
 }
 
